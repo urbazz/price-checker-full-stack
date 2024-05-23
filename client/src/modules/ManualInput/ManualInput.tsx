@@ -1,19 +1,24 @@
 import { FC} from "react";
 import { renderKeys } from "./libs/func";
 import { Flex, Layout } from "antd";
-import EAN from "../../store/EAN";
+import EAN from "../../libs/EAN";
 import { observer } from "mobx-react-lite";
 import { SearchBtn } from "../../components/SearchBtn/SearchBtn";
-import { Navigation } from "../../components/Navigation/Navigation";
-import setManualInput from "../../store/setManualInput";
+// import { Navigation } from "../../components/Navigation/Navigation";
+// import setManualInput from "../../libs/setManualInput";
+import { SearchForm } from "../../components/SearchForm/SearchForm";
 
 export const ManualInput:FC = observer(() => {
 
 
     return (
         <Layout>
-            <Navigation 
-                onClick={() => setManualInput.disableManualInput()}
+            {/* <Navigation onClick={() => setManualInput.disableManualInput()}/> */}
+            <SearchForm
+                onChange={(value) => {
+                    EAN.value = value.toString();
+                    console.log(value)
+                }}
             />
             <Flex 
                 className="full-screen"

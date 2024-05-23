@@ -1,5 +1,6 @@
 export enum routesEnum {
     SEARCH = '/',
     PRODUCT = '/product',
-    ERROR = '/error'
+    ERROR = '/error',
+    ADMIN = '/admin'
 }

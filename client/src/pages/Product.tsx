@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { routesEnum } from "../types/enums";
 import { ProductInfo } from "../modules/ProductInfo/ProductInfo";
 import { ProductDescr } from "../modules/ProductDescr/ProductDescr";
-import ProductContent from "../store/ProductContent";
+import ProductContent from "../libs/ProductContent";
 import { observer } from "mobx-react-lite";
 import { getProducts } from "../http";
 

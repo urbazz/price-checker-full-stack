@@ -1,6 +1,6 @@
 import { Button, Card, Typography } from "antd";
 import { FC } from "react";
-import ProductContent from "../../store/ProductContent";
+import ProductContent from "../../libs/ProductContent";
 
 export const ProductDescr: FC = () => {
     return (
