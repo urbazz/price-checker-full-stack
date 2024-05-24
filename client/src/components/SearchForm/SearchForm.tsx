@@ -1,25 +1,20 @@
-import { FormInstance, Input, InputRef } from "antd";
-import {Form} from "antd";
-import { FC, useRef, useState } from "react";
+import { Form, FormInstance, Input, InputRef } from "antd";
+import { FC, useRef } from "react";
 import EAN from "../../libs/EAN";
+import { observer } from "mobx-react-lite";
+import { useNavigate } from "react-router-dom";
+import { routesEnum } from "../../types/enums";
 
-export const SearchForm:FC<{
-    onSubmit?: () => string,
-    onChange?: (value: any) => void,
-}> = (props) => {
+export const SearchForm:FC = observer(() => {
 
     const inputRef = useRef<InputRef>(null);
     const formRef = useRef<FormInstance>(null);
-    const [inputValue, setInputValue] = useState(EAN.value)
+    const navigate = useNavigate();
 
     window.addEventListener('click', () => inputRef.current?.focus());
 
     const handlKeyUp = (event: { keyCode: number; }) => {
         event.keyCode === 13 && formRef.current?.submit()
-    }
-
-    const formSubmit = (values: string) => {
-        console.log(values);
     }
 
     return (
@@ -30,22 +25,22 @@ export const SearchForm:FC<{
             ref={formRef}
             onKeyUp={handlKeyUp}
             onFinish={(values) => {
-                formSubmit(values);
-                props.onSubmit;
+                navigate(`${routesEnum.PRODUCT}/${values.EAN}`);
             }}
         >
             <Form.Item
-                name={'EUN'}
+                name={'EAN'}
             >
                 <Input
                 autoFocus
                 ref={inputRef}
-                value={inputValue}
-                onChange={() => {
-                    setInputValue(EAN.value); 
-                    props.onChange}}
+                value={EAN.value}
+                maxLength={13}
+                onChange={(value) => {
+                    EAN.setValue(value.currentTarget.value);
+                    }}
                 />
             </Form.Item>
         </Form>
     )
-}
+})

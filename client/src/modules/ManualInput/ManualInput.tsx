@@ -14,12 +14,7 @@ export const ManualInput:FC = observer(() => {
     return (
         <Layout>
             {/* <Navigation onClick={() => setManualInput.disableManualInput()}/> */}
-            <SearchForm
-                onChange={(value) => {
-                    EAN.value = value.toString();
-                    console.log(value)
-                }}
-            />
+            <SearchForm/>
             <Flex 
                 className="full-screen"
                 justify='center' 

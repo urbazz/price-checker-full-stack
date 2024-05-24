@@ -5,7 +5,9 @@ class ProductContent {
     isDescr:boolean = false;
 
     constructor() {
+
         makeAutoObservable(this);
+        
     }
 
     setVisible(arg:boolean) {
