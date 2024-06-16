@@ -9,21 +9,23 @@ export class UsersService {
     constructor(@InjectModel(User) private userRepository: typeof User) {}
 
     async createUser(dto: createUserDto) {
-        const user = await this.userRepository.create(dto);
-        return user;
+        const user = await this.userRepository.create(dto)
+        return user
     }
 
-    async getUser() {
-
+    async getUser(id: string | number) {
+        const user = await this.userRepository.findOne({where: {id}})
+        return user
     }
 
     async getAllUsers() {
-        const users = await this.userRepository.findAll();
-        return users;
+        const users = await this.userRepository.findAll()
+        return users
     }
 
-    async deleteUser() {
-
+    async deleteUser(id: string | number) {
+        const user = await this.userRepository.destroy({where: {id}})
+        return user
     }
 
 }

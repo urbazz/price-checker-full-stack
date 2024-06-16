@@ -8,7 +8,10 @@ import { IProductsQuery } from './types';
 @Injectable()
 export class ProductsService {
 
-    constructor(@InjectModel(Product) private productRepository: typeof Product) {}
+    constructor(
+        @InjectModel(Product)
+        private productRepository: typeof Product
+    ) {}
 
     async createProduct(dto: CreateProductDto) {
         const product = await this.productRepository.create(dto);
@@ -17,8 +20,9 @@ export class ProductsService {
 
     async getAllProducts(query: IProductsQuery):Promise <{count: number, rows: Product[]}> {
 
-        const limit = +query.limit;
-        const offset = +query.offset *  20
+        const limit = +query.limit || 9
+        const page = +query.page || 1
+        const offset = page * limit-limit
 
         return this.productRepository.findAndCountAll({
             limit,
@@ -26,11 +30,13 @@ export class ProductsService {
         })
     }
 
-    async getProduct() {
-
+    async getProduct(id: number | string) {
+        const product = await this.productRepository.findOne({where: {id}})
+        return product
     }
 
-    async deleteProduct() {
-        
+    async deleteProduct(id) {
+        const product = await this.productRepository.destroy({where: {id}})
+        return product
     }
 }
