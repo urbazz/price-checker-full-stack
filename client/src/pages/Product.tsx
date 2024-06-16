@@ -7,13 +7,12 @@ import { ProductInfo } from "../modules/ProductInfo/ProductInfo";
 import { ProductDescr } from "../modules/ProductDescr/ProductDescr";
 import ProductContent from "../libs/ProductContent";
 import { observer } from "mobx-react-lite";
-import { getProducts } from "../http";
 
 
 const Product:FC = observer(() => {
 
     useEffect(() => {
-        getProducts();
+        // getProducts();
     }, [])
 
     const navigate = useNavigate();
