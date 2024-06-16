@@ -12,10 +12,7 @@ export const SearchForm:FC = observer(() => {
     const navigate = useNavigate();
 
     window.addEventListener('click', () => inputRef.current?.focus());
-
-    const handlKeyUp = (event: { keyCode: number; }) => {
-        event.keyCode === 13 && formRef.current?.submit()
-    }
+    window.onload = () => inputRef.current?.focus();
 
     return (
         <Form
@@ -23,9 +20,9 @@ export const SearchForm:FC = observer(() => {
             name="searchProduct"
             autoComplete="off"
             ref={formRef}
-            onKeyUp={handlKeyUp}
             onFinish={(values) => {
                 navigate(`${routesEnum.PRODUCT}/${values.EAN}`);
+                EAN.value = '';
             }}
         >
             <Form.Item
@@ -38,6 +35,7 @@ export const SearchForm:FC = observer(() => {
                 maxLength={13}
                 onChange={(value) => {
                     EAN.setValue(value.currentTarget.value);
+                    EAN.value.length == 13 && formRef.current?.submit()
                     }}
                 />
             </Form.Item>

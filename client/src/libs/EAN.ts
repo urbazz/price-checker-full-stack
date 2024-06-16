@@ -2,6 +2,8 @@ import { makeAutoObservable } from "mobx";
 
 class EAN {
     value = '';
+    length = 13;
+    
     constructor() {
         makeAutoObservable(this);
     }
@@ -11,7 +13,7 @@ class EAN {
     }
 
     setStringLength() {
-        if (this.value.length >= 13) 
+        if (this.value.length >= this.length) 
             return true;  
             else return false; 
     }

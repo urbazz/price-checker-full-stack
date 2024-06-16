@@ -5,9 +5,7 @@ class setManualInput {
     isManual:boolean = false
 
     constructor() {
-
         makeAutoObservable(this)
-
     }
 
     enableManualInput() {

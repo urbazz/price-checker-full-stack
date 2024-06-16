@@ -4,16 +4,16 @@ import { Flex, Layout } from "antd";
 import EAN from "../../libs/EAN";
 import { observer } from "mobx-react-lite";
 import { SearchBtn } from "../../components/SearchBtn/SearchBtn";
-// import { Navigation } from "../../components/Navigation/Navigation";
-// import setManualInput from "../../libs/setManualInput";
 import { SearchForm } from "../../components/SearchForm/SearchForm";
+import { Navigation } from "../../components/Navigation/Navigation";
+import setManualInput from "../../libs/setManualInput";
 
 export const ManualInput:FC = observer(() => {
 
 
     return (
         <Layout>
-            {/* <Navigation onClick={() => setManualInput.disableManualInput()}/> */}
+            <Navigation onClick={() => setManualInput.disableManualInput()}/>
             <SearchForm/>
             <Flex 
                 className="full-screen"
