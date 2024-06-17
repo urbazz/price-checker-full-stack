@@ -5,6 +5,7 @@ import { observer } from "mobx-react-lite";
 
 
 const Search:FC = observer(() => {
+
     return (
         setManualInput.isManual ? <ManualInput/> : <AutoInput/>
     )

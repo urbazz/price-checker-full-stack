@@ -14,7 +14,9 @@ export class ProductsController {
     }    
 
     @Get()
-    getAllProducts(@Query() query: IProductsQuery) {
+    getAllProducts(
+        @Query() query: IProductsQuery
+    ) {
         return this.ProductsService.getAllProducts(query)
     }
 
