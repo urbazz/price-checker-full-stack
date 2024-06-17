@@ -3,6 +3,7 @@ import { InjectModel } from '@nestjs/sequelize';
 import { Product } from './products.model';
 import { CreateProductDto } from './dto/create-product.dto';
 import { IProductsQuery } from './types';
+import { UpdateProductDto } from './dto/update-product.dto';
 
 
 @Injectable()
@@ -37,6 +38,13 @@ export class ProductsService {
 
     async deleteProduct(id) {
         const product = await this.productRepository.destroy({where: {id}})
+        return product
+    }
+
+    async editProduct(id: number | string, dto: UpdateProductDto) {
+        const product = await this.productRepository.findByPk(id)
+        await product.update(dto)
+
         return product
     }
 }

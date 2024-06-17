@@ -9,7 +9,6 @@ export const dataProvider: DataProvider = {
     getList: async (resource) => {
         const url = `${apiUrl}/${resource}`;
         const {data} = await axios.get(url)
-        // console.log(url)
 
         return {
             data: data.rows,
@@ -17,13 +16,13 @@ export const dataProvider: DataProvider = {
         };
     },
 
-    getOne: async (id, resource) => {
+    getOne: async (resource, {id}) => {
       const url =`${apiUrl}/${resource}/${id}`
-      const {data} = await axios.get(url)
-      console.log(data.rows)
+       const {data} = await axios.get(url)
+
       return {
-        data: data.rows
-      };
+        data: data
+      }
   },
 
     getMany: async (resource, params) => {
@@ -55,7 +54,7 @@ export const dataProvider: DataProvider = {
       });
     },
 
-    update: (resource, params) =>
+    update: (resource, {id, data}) =>
         httpClient(`${apiUrl}/${resource}/${params.id}`, {
             method: 'PUT',
             body: JSON.stringify(params.data),

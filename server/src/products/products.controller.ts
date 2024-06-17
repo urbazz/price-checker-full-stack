@@ -1,7 +1,8 @@
-import { Body, Controller, Delete, Get, Param, Post, Query } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Post, Put, Query } from '@nestjs/common';
 import { ProductsService } from './products.service';
 import { CreateProductDto } from './dto/create-product.dto';
 import { IProductsQuery } from './types';
+import { UpdateProductDto } from './dto/update-product.dto';
 
 @Controller('products')
 export class ProductsController {
@@ -28,5 +29,10 @@ export class ProductsController {
     @Delete(':id')
     deleteProduct(@Param('id') id: string) {
         return this.ProductsService.deleteProduct(id)
+    }
+
+    @Put(':id')
+    editProduct(@Param('id') id: string, @Body() data: UpdateProductDto) {
+
     }
 }
