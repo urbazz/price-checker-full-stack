@@ -15,15 +15,18 @@ export class ProductsController {
     }    
 
     @Get()
-    getAllProducts(
-        @Query() query: IProductsQuery
-    ) {
+    getAllProducts(@Query() query: IProductsQuery) {
         return this.ProductsService.getAllProducts(query)
     }
 
-    @Get(':id')
+    @Get('/:id')
     getProduct(@Param('id') id: string) {
         return this.ProductsService.getProduct(id)
+    }
+
+    @Get('/ean/:str')
+    getProductByEAN(@Param('str') str: string | number) {
+        return this.ProductsService.getByEAN(str)
     }
 
     @Delete(':id')
@@ -32,7 +35,7 @@ export class ProductsController {
     }
 
     @Put(':id')
-    editProduct(@Param('id') id: string, @Body() data: UpdateProductDto) {
-
+    editProduct(@Param('id') id: string, @Body() dto: UpdateProductDto) {
+        return this.ProductsService.editProduct(id, dto)
     }
 }

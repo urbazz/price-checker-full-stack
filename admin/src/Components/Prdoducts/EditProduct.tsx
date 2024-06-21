@@ -4,11 +4,10 @@ const EditProduct = () => {
     return (
         <Edit>
             <SimpleForm>
-                <TextInput source="name"/>
-                <NumberInput source="price"/>
-                <TextInput source="description"/>
-                {/* <TextInput source=""/>
-                <TextInput source=""/> */}
+                <TextInput source="name" label="Наименование товара" />
+                <NumberInput source="price" label="Цена"/>
+                <TextInput source="EAN" label="Штрих-код"/>
+                <TextInput source="description" fullWidth label="Описание товара" />
             </SimpleForm>
         </Edit>
     );

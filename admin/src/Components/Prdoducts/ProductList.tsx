@@ -1,12 +1,16 @@
-import {Datagrid, List, NumberField, TextField} from 'react-admin'
+import {Datagrid, List, NumberField, SearchInput, TextField} from 'react-admin'
+
+const filters = [
+    <SearchInput source='name' alwaysOn key={'search'}/>
+]
 
 export const ProductList = () => {
     return (
-        <List>
+        <List filters={filters}>
             <Datagrid rowClick="show">
                 <TextField source='id'/>
-                <TextField source='name'/>
-                <NumberField source='price'/>
+                <TextField source='name' label="Наименование товара"/>
+                <NumberField source='price' label="Цена"/>
             </Datagrid>
         </List>
     );

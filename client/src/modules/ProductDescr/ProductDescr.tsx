@@ -1,6 +1,5 @@
 import { Button, Card, Typography } from "antd";
 import { FC } from "react";
-import ProductContent from "../../libs/ProductContent";
 
 export const ProductDescr: FC = () => {
     return (
@@ -14,7 +13,6 @@ export const ProductDescr: FC = () => {
             <Button 
                 type='primary' 
                 className="product-btn"
-                onClick={() => ProductContent.setVisible(false)}
             >
                 Посмотреть характеристики
             </Button>

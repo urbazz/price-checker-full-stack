@@ -1,13 +1,15 @@
 import { Flex, Layout } from "antd";
-import { FC } from "react"
+import { FC, useEffect } from "react"
 import { Navigation } from "../components/Navigation/Navigation";
 import { useNavigate } from "react-router-dom";
 import { routesEnum } from "../types/enums";
 import errorImg from '../assets/img/error.png';
+import { timer } from "../libs/times";
 
 const Error:FC = () => {
 
     const navigate = useNavigate()
+    useEffect(() => {timer()},[])
 
     return (
         <Layout>

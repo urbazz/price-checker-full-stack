@@ -1,5 +1,19 @@
+interface IFilter {
+    name: string
+}
+
+interface IPagination {
+    page: number
+    perPage: number
+}
+
+interface ISort {
+    field: string
+    order: string
+}
+
 export interface IProductsQuery {
-    limit: string
-    offset: string
-    page: string
+    filter: IFilter
+    pagination: IPagination
+    sort: ISort
 }

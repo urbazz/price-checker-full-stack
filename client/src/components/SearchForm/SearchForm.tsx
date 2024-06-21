@@ -4,6 +4,7 @@ import EAN from "../../libs/EAN";
 import { observer } from "mobx-react-lite";
 import { useNavigate } from "react-router-dom";
 import { routesEnum } from "../../types/enums";
+import './SearchForm.scss'
 
 export const SearchForm:FC = observer(() => {
 

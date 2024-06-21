@@ -3,19 +3,16 @@ import { FC, useEffect } from "react"
 import { Navigation } from "../components/Navigation/Navigation";
 import { useNavigate } from "react-router-dom";
 import { routesEnum } from "../types/enums";
-import { ProductInfo } from "../modules/ProductInfo/ProductInfo";
 import { ProductDescr } from "../modules/ProductDescr/ProductDescr";
-import ProductContent from "../libs/ProductContent";
 import { observer } from "mobx-react-lite";
+import { timer } from "../libs/times";
 
 
 const Product:FC = observer(() => {
 
-    useEffect(() => {
-        // getProducts();
-    }, [])
-
     const navigate = useNavigate();
+    useEffect(() => {timer()},[])
+
 
     return (
             <Layout className="full-screen">
@@ -37,7 +34,7 @@ const Product:FC = observer(() => {
                     </Flex>
                 </Layout.Sider>
                 <Layout.Content className="product-info">
-                    {ProductContent.isDescr ? <ProductDescr/> : <ProductInfo/>}
+                    <ProductDescr/>  
                 </Layout.Content>
             </Layout>
     )

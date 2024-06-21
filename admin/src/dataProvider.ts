@@ -6,24 +6,37 @@ const apiUrl = 'http://localhost:5000/api';
 const httpClient = fetchUtils.fetchJson;
 
 export const dataProvider: DataProvider = {
-    getList: async (resource) => {
-        const url = `${apiUrl}/${resource}`;
-        const {data} = await axios.get(url)
+    getList: async (resource, params) => {
+      const {page, perPage} = params.pagination
+      const {field, order} = params.sort
+      const filter = params.filter.name ? {name: params.filter.name} : {}
 
-        return {
-            data: data.rows,
-            total: data.count,
-        };
+      const query = {
+        ...filter,
+        page,
+        perPage,
+        sort: `${field}, ${order}`
+      }
+
+      const url = `${apiUrl}/${resource}`
+      const {data} = await axios.get(url, {
+        params: query
+      })
+      console.log(stringify(filter))
+      return {
+        data: data.data,
+        total: data.total
+      }
     },
 
     getOne: async (resource, {id}) => {
       const url =`${apiUrl}/${resource}/${id}`
        const {data} = await axios.get(url)
-
+       
       return {
         data: data
       }
-  },
+    },
 
     getMany: async (resource, params) => {
         const query = {
@@ -54,11 +67,14 @@ export const dataProvider: DataProvider = {
       });
     },
 
-    update: (resource, {id, data}) =>
-        httpClient(`${apiUrl}/${resource}/${params.id}`, {
-            method: 'PUT',
-            body: JSON.stringify(params.data),
-        }).then(({ json }) => ({ data: json })),
+    update: async (resource, params) => {
+        const url =`${apiUrl}/${resource}/${params.id}`
+        const {data} = await axios.put(url, params.data)
+        console.log(data)
+        return {
+          data: data
+        }
+      },
 
     updateMany: async (resource, params) => {
         const query = {
@@ -71,18 +87,23 @@ export const dataProvider: DataProvider = {
       return ({ data: json });
     },
 
-    create: (resource, params) =>
-        httpClient(`${apiUrl}/${resource}`, {
-            method: 'POST',
-            body: JSON.stringify(params.data),
-        }).then(({ json }) => ({
-            data: { ...params.data, id: json.id } as any,
-        })),
+    create: async (resource, params) => {
+        const url =`${apiUrl}/${resource}/`
+        const {data} = await axios.post(url, params.data)
+        console.log(params.data) 
+        return {
+          data: data
+        }
+    },
 
-    delete: (resource, params) =>
-        httpClient(`${apiUrl}/${resource}/${params.id}`, {
-            method: 'DELETE',
-        }).then(({ json }) => ({ data: json })),
+    delete: async (resource, {id}) => {
+        const url =`${apiUrl}/${resource}/${id}`
+         const {data} = await axios.delete(url)
+         
+        return {
+          data: data
+        }
+    },
 
     deleteMany: async (resource, params) => {
         const query = {
