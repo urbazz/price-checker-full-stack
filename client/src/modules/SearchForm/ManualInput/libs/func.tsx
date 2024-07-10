@@ -1,7 +1,7 @@
-import { ClearBtn } from "../../../components/ClearBtn/ClearBtn";
-import { Key } from "../../../components/Key/Key";
-import { NumbersSequence } from "../../../libs/common";
-import EAN from "../../../libs/EAN";
+import { ClearBtn } from "../../../../components/SearchPage/ClearBtn/ClearBtn";
+import { Key } from "../../../../components/SearchPage/Key/Key";
+import { NumbersSequence } from "../../../../libs/common";
+import EAN from "../../../../store/EAN";
 
 export const keysOnClick = (item: number) => {
     EAN.addSymbol(item);

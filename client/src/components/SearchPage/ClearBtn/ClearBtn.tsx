@@ -1,7 +1,7 @@
 import { Button } from "antd";
 import { FC } from "react";
 import './ClearBtn.scss';
-import clearImg from '../../assets/img/clear.png';
+import clearImg from '../../../assets/img/clear.png';
 
 export const ClearBtn:FC <{
     onClick:React.MouseEventHandler

@@ -1,3 +1,13 @@
-import axios from "axios";
+import axios from "axios"
 
-export async function db() {return await axios.get('http://localhost:5000/api/products?limit=10')}
+export const api = async () => {
+    try {
+        const response = await axios.get(import.meta.env.VITE_REACT_PRODUCTS_URL);
+        const data = response.data;
+        return data;
+
+    } catch (error) {
+        console.log(error);
+    }
+
+}

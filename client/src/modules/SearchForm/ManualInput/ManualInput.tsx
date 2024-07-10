@@ -1,12 +1,12 @@
 import { FC} from "react";
 import { renderKeys } from "./libs/func";
 import { Flex, Layout } from "antd";
-import EAN from "../../libs/EAN";
+import EAN from "../../../store/EAN";
 import { observer } from "mobx-react-lite";
-import { SearchBtn } from "../../components/SearchBtn/SearchBtn";
-import { SearchForm } from "../../components/SearchForm/SearchForm";
-import { Navigation } from "../../components/Navigation/Navigation";
-import setManualInput from "../../libs/setManualInput";
+import { SearchBtn } from "../../../components/SearchPage/SearchBtn/SearchBtn";
+import { Navigation } from "../../../components/Share/Navigation/Navigation";
+import setManualInput from "../../../store/setManualInput";
+import { SearchForm } from "../../../components/Share/SearchForm/SearchForm";
 
 export const ManualInput:FC = observer(() => {
 

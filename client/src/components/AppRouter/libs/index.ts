@@ -1,8 +1,8 @@
-import Product from "../pages/Product";
-import Search from "../pages/Search";
-import Error from "../pages/Error";
-import { routesEnum } from "../types/enums";
-import { IRoute } from "../types/routes";
+import Product from "../../../pages/Product";
+import Search from "../../../pages/Search";
+import Error from "../../../pages/Error";
+import { routesEnum } from '../types/index';
+import { IRoute } from "../types/index";
 
 export const routes:IRoute[] = [
     {

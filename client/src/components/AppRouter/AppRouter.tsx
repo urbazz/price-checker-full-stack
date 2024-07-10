@@ -1,7 +1,7 @@
 import { FC } from "react";
 import { Navigate, Route, Routes } from "react-router-dom";
-import { routes } from "../routes";
-import { routesEnum } from "../types/enums";
+import { routes } from './libs/index';
+import { routesEnum } from "./types/index";
 
 export const AppRouter:FC = () => {
     return (

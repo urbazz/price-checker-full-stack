@@ -4,3 +4,9 @@ export enum routesEnum {
     ERROR = '/error',
     ADMIN = '/admin'
 }
+
+export interface IRoute {
+    path: string;
+    Component: React.FC;
+    exact: boolean;
+}

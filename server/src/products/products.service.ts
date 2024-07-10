@@ -18,32 +18,23 @@ export class ProductsService {
     }    
 
     async getAllProducts(query: IProductsQuery):Promise <{total: number, data: Product[]}> {
-        const {filter, pagination, sort} = query
+        const {page, perPage, range, sort, filter} = query
         const whereClause: FindOptions = filter ? {
             where: {
-              name: {
-                [Op.like]: `%${filter.name}%`
-              }
+                name: {
+                    [Op.like]: `%${filter}%`
+                }
             }
-          } : {};
-        let page = 1
-        let offset = 0
-        let limit = 10
-        console.log(whereClause)
-
-        if (pagination && pagination.page && pagination.perPage) {
-            page = pagination.page
-            offset = (pagination.page - 1) * pagination.perPage;
-            limit = pagination.perPage;
-        }
-
+        } : {}
+        
+        console.log(filter)
         const {rows: data, count: total} = await this.productRepository.findAndCountAll({
             ...whereClause,
-            offset: (page - 1) * limit,
-            limit: limit,
-            // order: [[sort.field, sort.order]]
+            limit: perPage,
+            offset: range,
+            order: [[sort[0], sort[1]]]
         })
-
+        
         return {total, data}
     }
 

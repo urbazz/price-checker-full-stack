@@ -1,7 +1,7 @@
 import { Button, Flex, Layout } from "antd";
 import { FC } from "react";
-import searchImg from '../../assets/img/search.jpg'
-import setManualInput from "../../libs/setManualInput";
+import searchImg from '../../../assets/img/search.jpg'
+import setManualInput from "../../../store/setManualInput";
 import { observer } from "mobx-react-lite";
 
 export const AutoInput:FC = observer(() => {

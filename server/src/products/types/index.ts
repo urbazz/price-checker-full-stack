@@ -1,19 +1,12 @@
-interface IFilter {
-    name: string
-}
-
-interface IPagination {
-    page: number
-    perPage: number
-}
-
 interface ISort {
-    field: string
+    field: string,
     order: string
 }
 
 export interface IProductsQuery {
-    filter: IFilter
-    pagination: IPagination
+    page: number
+    perPage: number
+    range: number
     sort: ISort
+    filter: string
 }

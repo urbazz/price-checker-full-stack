@@ -1,12 +1,11 @@
 import { Form, FormInstance, Input, InputRef } from "antd";
-import { FC, useRef } from "react";
-import EAN from "../../libs/EAN";
-import { observer } from "mobx-react-lite";
 import { useNavigate } from "react-router-dom";
-import { routesEnum } from "../../types/enums";
+import { FC, useRef } from "react";
+import EAN from "../../../store/EAN";
 import './SearchForm.scss'
+import { routesEnum } from "../../AppRouter/types";
 
-export const SearchForm:FC = observer(() => {
+export const SearchForm:FC = () => {
 
     const inputRef = useRef<InputRef>(null);
     const formRef = useRef<FormInstance>(null);
@@ -14,6 +13,9 @@ export const SearchForm:FC = observer(() => {
 
     window.addEventListener('click', () => inputRef.current?.focus());
     window.onload = () => inputRef.current?.focus();
+    document.addEventListener('scan', function(scanCode) {
+        navigate(routesEnum.PRODUCT + '/' + scanCode.detail.scanCode); 
+    })
 
     return (
         <Form
@@ -21,10 +23,6 @@ export const SearchForm:FC = observer(() => {
             name="searchProduct"
             autoComplete="off"
             ref={formRef}
-            onFinish={(values) => {
-                navigate(`${routesEnum.PRODUCT}/${values.EAN}`);
-                EAN.value = '';
-            }}
         >
             <Form.Item
                 name={'EAN'}
@@ -34,12 +32,8 @@ export const SearchForm:FC = observer(() => {
                 ref={inputRef}
                 value={EAN.value}
                 maxLength={13}
-                onChange={(value) => {
-                    EAN.setValue(value.currentTarget.value);
-                    EAN.value.length == 13 && formRef.current?.submit()
-                    }}
                 />
             </Form.Item>
         </Form>
     )
-})
+}

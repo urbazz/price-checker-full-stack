@@ -1,10 +1,10 @@
 import { Button } from "antd";
 import { FC } from "react";
 import './SearchBtn.scss';
-import EAN from "../../libs/EAN";
-import { routesEnum } from "../../types/enums";
+import EAN from "../../../store/EAN";
 import { useNavigate } from "react-router-dom";
 import { observer } from "mobx-react-lite";
+import { routesEnum } from "../../AppRouter/types";
 
 
 export const SearchBtn:FC = observer (() => {
@@ -20,7 +20,7 @@ export const SearchBtn:FC = observer (() => {
                 EAN.value = ''
             }}
         >
-
+            {/* <img src={} alt="" /> */}
         </Button>
     )
 })

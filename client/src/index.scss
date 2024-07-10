@@ -86,3 +86,19 @@ body {
     margin-left: 50%;
     transform: translateX(-50%);
 }
+
+.product-content {
+    padding:  0 15px;
+}
+
+.product-card {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px 0;
+    padding-top: 200px;
+    overflow: auto;
+    height: 80vh;
+}

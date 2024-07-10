@@ -1,8 +1,11 @@
 import { BrowserRouter } from "react-router-dom"
-import { AppRouter } from "./components/AppRouter"
-import { SearchForm } from "./components/SearchForm/SearchForm"
+import { AppRouter } from "./components/AppRouter/AppRouter"
+import { SearchForm } from "./components/Share/SearchForm/SearchForm"
+import onScan from "onscan.js"
 
 function App() {
+
+  onScan.attachTo(document)
 
   return (
     <>

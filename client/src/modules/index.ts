@@ -1,5 +1,5 @@
-import { ManualInput } from "./ManualInput/ManualInput";
-import { AutoInput } from "./AutoInput/AutoInput";
+import { ManualInput } from "./SearchForm/ManualInput/ManualInput";
+import { AutoInput } from "./SearchForm/AutoInput/AutoInput";
 
 export {
     AutoInput,
