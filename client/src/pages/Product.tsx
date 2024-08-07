@@ -1,46 +1,50 @@
-import { Card, Flex, Layout } from "antd";
-import { FC, useEffect, useState,} from "react"
-import { ProductDescr } from "../modules/ProductPage/ProductDescr/ProductDescr";
-import { observer } from "mobx-react-lite";
-import { api } from "../http";
-import { useParams } from "react-router-dom";
+import { Flex } from 'antd';
+import { useEffect, useState} from 'react';
+import { Navbar } from '../shared/components';
+import { useNavigate, useParams } from 'react-router-dom';
+import { routesEnum } from '../app/AppRouter';
+import { api } from '../shared/api';
+import { Loader, ProductInfo, ProductModal } from '../widgets';
+import store from '../shared/store';
 
-const Product:FC = observer(() => {
+export const Product = () => {
 
-    const data = {
-        title: '1',
-        price: '2',
-        descr: '3'
-    }
-    const {id} = useParams()
-    console.log(id)
-    const [product, setProduct] = useState([])
-    const  fetchProducts = async () => {
-        api().then((result) => {
-            const filterData = result.find(item => {
-                const ean = parseInt((item.excerpt.rendered).match(/\d+/));
-                ean.toString() == id;
-            })
-            console.log(filterData)
-        })
-    }
+    const [open, setOpen] = useState(false);
+    const navigate = useNavigate();
+    const params = useParams();
+    const [isLoaded, setIsLoaded] = useState(false)
+    const [title, setTitle] = useState('');
+    const [price, setPrice] = useState('');
+    const [description, setDescription] = useState('')
+    const [img, setImg] = useState('')
 
-    useEffect(() => {fetchProducts()}, [])
-    console.log(product)
+    useEffect(() => {
+        const responce = api(params.id!, () => navigate(routesEnum.ERROR));
+        responce.then(item => {
+            setTitle(item.name);
+            setPrice(item.price);
+            setDescription(item.description);
+            setImg(item.images[0].src);
+            setIsLoaded(true);
+        });
+    }, [navigate, params])
 
     return (
-        <Layout className="full-screen">
-                <Flex align='center' justify='center' gap={0} className="full-screen product-content">
-                    <Card className="product-card">
-                    <Flex vertical align='center' justify='center' gap={20}>
-                        <h1 className="title--reset">{data.title}</h1>
-                        <h2 className="title--reset">Стоимость: { data.price} рублей</h2>
-                    </Flex>
-                    </Card>
-                    <ProductDescr descr={data.descr} />
-                </Flex>
-        </Layout>
-    )
-})
+        <Flex 
+            className='full-screen'
+            justify='center'
+            align='center'
+        >
+            {
+                isLoaded?
+                <>
+                    <Navbar/>
+                    <ProductInfo img={img} title={title} price={price} onClick={() => setOpen(true)}/>
+                    <ProductModal description={description} onCancel={() => setOpen(false)} open={open}/>
+                </>:
+                <Loader/>
 
-export default Product;
+            }
+        </Flex>
+    );
+};

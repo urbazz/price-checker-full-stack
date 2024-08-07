@@ -1,0 +1,45 @@
+.barecode-wrapper {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+    max-width: 435px;
+    width: 100%;
+    height: 60px;
+}
+
+.barecode {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    width: 100%;
+    border-bottom: 3px solid #1677ff;
+    font-size: 36px;
+    letter-spacing: 6px;
+}
+
+.keyboard-wrapper {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    max-width: 435px;
+    width: 100%;
+}
+
+.btn {
+    &--clear {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        grid-column: 2 span;
+        height: 100%;
+    }
+
+    &--search {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 60px;
+        height: 100%;
+    }
+}

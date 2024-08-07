@@ -1,14 +1,14 @@
 import { FC} from "react"
-import setManualInput from "../store/setManualInput";
-import { AutoInput, ManualInput } from "../modules/";
 import { observer } from "mobx-react-lite";
+import { KeyBoard, WelcomeScreen } from "../widgets/";
+import store from "../shared/store";
 
 
-const Search:FC = observer(() => {
+export const Search:FC = observer(() => {
 
     return (
-        setManualInput.isManual ? <ManualInput/> : <AutoInput/>
+        <>
+            {store.isManual ? <KeyBoard/> : <WelcomeScreen/>}
+        </>
     )
-})
-
-export default Search;
+});
